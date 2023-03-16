@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import LikeButton from './LikeButton';
 import styles from './Posts.module.css';
 
@@ -10,7 +11,11 @@ interface Posts {
 
 const fetchPosts = async () => {
   try {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      next: {
+        revalidate: 60,
+      },
+    });
     const posts = (await res.json()) as Posts[];
     console.log({
       status: 'success',
@@ -29,9 +34,11 @@ const ListsOfPosts = async () => {
     <div className={styles.container}>
       {posts?.slice(0, 5).map(({ id, title, body }) => (
         <div key={id}>
-          <h2 style={{ color: 'lightblue' }}>{title}</h2>
-          <p>{body}</p>
-          <LikeButton id={id} />
+          <Link href={`posts/${id}`}>
+            <h2 style={{ color: 'lightblue' }}>{title}</h2>
+            <p>{body}</p>
+            <LikeButton id={id} />
+          </Link>
         </div>
       ))}
     </div>
