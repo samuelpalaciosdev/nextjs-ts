@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const links = [
@@ -11,17 +12,17 @@ const Navbar = () => {
       route: '/about',
     },
     {
-      label: 'Contact',
-      route: '/contact',
+      label: 'Posts',
+      route: '/posts',
     },
   ];
 
   return (
-    <header>
+    <header className={styles.header}>
       <nav>
-        <ul>
+        <ul className={styles.list}>
           {links.map(({ label, route }) => (
-            <li key={label}>
+            <li key={label} className={styles.item}>
               <Link href={route}>{label}</Link>
             </li>
           ))}

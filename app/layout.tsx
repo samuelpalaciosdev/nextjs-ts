@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import '../src/styles/globals.css';
 
 export const metadata = {
   title: 'Next.js',
@@ -8,8 +9,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <Navbar />
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
