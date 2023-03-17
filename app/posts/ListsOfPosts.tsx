@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import LikeButton from './LikeButton';
-import styles from './Posts.module.css';
 
 interface Posts {
   userId: number;
@@ -31,7 +30,7 @@ const ListsOfPosts = async () => {
   const posts = await fetchPosts();
 
   return (
-    <div className={styles.container}>
+    <>
       {posts?.slice(0, 5).map(({ id, title, body }) => (
         <div key={id}>
           <Link href={`posts/${id}`}>
@@ -41,7 +40,7 @@ const ListsOfPosts = async () => {
           </Link>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 export default ListsOfPosts;
